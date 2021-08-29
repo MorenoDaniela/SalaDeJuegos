@@ -1,0 +1,13 @@
+.text-orange{
+  color: coral;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.border-orange{
+  border-color: coral;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
