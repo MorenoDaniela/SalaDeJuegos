@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Paginas/home/home.component';
 import { QuienSoyComponent } from './Paginas/quien-soy/quien-soy.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { NavbarComponent } from './Componentes/navbar/navbar.component';
 import { ErrorComponent } from './Paginas/error/error.component';
 
 @NgModule({
