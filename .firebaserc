@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "saladejuegosmorenodaniela": {
+      "hosting": {
+        "Sala-De-Juegos": [
+          "saladejuegosmorenodaniela"
+        ]
+      }
+    }
+  }
+}

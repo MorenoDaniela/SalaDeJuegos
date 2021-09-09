@@ -1,6 +1,7 @@
 <div class="login">
-  <input type="text" placeholder="Usuario" id="username">
-<input type="password" placeholder="Contraseña" id="password">
-<a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
-<input type="submit" value="Registrate">
+  <input type="text" placeholder="Email" [(ngModel)]='authService.Usuario.email' >
+  <input type="password" placeholder="Contraseña" [(ngModel)]='authService.Usuario.password'>
+  <a class="forgot">¿Olvidaste tu contraseña?</a>
+  <input type="submit" (click)="crearCuenta()" value="Registrate">
 </div>
+
