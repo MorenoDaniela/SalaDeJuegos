@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ChatComponent } from './Componentes/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     ErrorComponent,
     BannerAeropuertoComponent,
-    AhorcadoComponent
+    AhorcadoComponent,
+    ChatComponent
   ],
   imports: [
     FormsModule,

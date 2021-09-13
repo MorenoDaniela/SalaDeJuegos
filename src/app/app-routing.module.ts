@@ -6,6 +6,7 @@ import { QuienSoyComponent } from './Paginas/quien-soy/quien-soy.component';
 import { ErrorComponent } from './Paginas/error/error.component';
 import { BannerAeropuertoComponent } from './Componentes/banner-aeropuerto/banner-aeropuerto.component';
 import { AhorcadoComponent } from './Componentes/ahorcado/ahorcado.component';
+import { ChatComponent } from './Componentes/chat/chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'quiensoy', component:QuienSoyComponent},
   {path: 'error', component:ErrorComponent},
   {path: 'juegopropio', component:BannerAeropuertoComponent},
-  {path:'ahorcado', component:AhorcadoComponent}
+  {path:'ahorcado', component:AhorcadoComponent},
+  {path:"chat",component:ChatComponent}
 ];
 
 @NgModule({

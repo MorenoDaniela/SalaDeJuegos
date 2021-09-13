@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { Letra } from 'src/app/Clases/letra';
 
 @Component({
   selector: 'app-ahorcado',
@@ -9,43 +7,56 @@ import { Letra } from 'src/app/Clases/letra';
 })
 export class AhorcadoComponent implements OnInit {
 
-  arrayPalabras:Array<any> = ['INFORMATICA', 'COSAS', 'BOLSA', 'CAJA', 'MOUSE', 'TELEFONO','CELULAR','BOTELLA'];
+  arrayPalabras:Array<any> = ['INFORMATICA', 'COSAS', 'BOLSA', 'CAJA', 'MOUSE', 'TELEFONO','CELULAR','BOTELLA', 'DESODORANTE', 'CARAMELOS', 'BILLETE','SONAJERO','CENA','CORDERO'];
   cantidadPalabras: number = this.arrayPalabras.length;
-  arrayDeLetras:Array<any> = [];
-  indiceArray: number = Math.floor(Math.random() * (this.cantidadPalabras -1));
+  indiceArray: number;
+  palabraElegida:any;
 
-  palabraElegida = this.arrayPalabras[this.indiceArray];
+  palabraAdivinar = [];
+  palabraMostrar = [];
+  nodoResultado:any;
 
 
-
-
-  compararLetra(recibida:string)
-  {
-
-      console.log("entro");
-      for (let u = 0; u<this.palabraElegida.length;u++)
-      {
-        console.log(this.palabraElegida[u]);
-        if (recibida==this.palabraElegida[u]){
-          let ele = document.getElementById(this.palabraElegida[u].id);
-          ele.classList.remove("d-none");
-          ele.classList.add("d-block");
-        }
-      }
-
-  }
 
   constructor() { }
 
   ngOnInit(): void {
-    for (let i = 0; i<this.palabraElegida.length;i++)
-    {
-      console.log(this.palabraElegida[i]);
-      this.arrayDeLetras.push(this.palabraElegida[i]);
-      // this.palabraElegida[i].setAttribute("id", i);
-    }
+    this.prepararJuego();
   }
 
+  compararLetra(recibida:string)
+  {
+    let letraUsuario = recibida;
+    // Recorremos todas las letras para saber si alguna esta bien
+    for (const [posicion, letraAdivinar] of this.palabraAdivinar.entries()) {
+        // Comprobamos si la letra del usuario es igual a la letra a adivinar
+        if (letraUsuario == letraAdivinar) {
+            // Sustituimos el guion por la letra acertada
+            this.palabraMostrar[posicion] = letraAdivinar;
+        }
+    }
+    //// 4 Mostramos los cambios
+    this.dibujarJuego();
 
+  }
+
+  prepararJuego () {
+    this.indiceArray= Math.floor(Math.random() * (this.cantidadPalabras -1));
+    this.palabraElegida = this.arrayPalabras[this.indiceArray];
+    console.log(this.palabraElegida);
+    //// 1.3 Separo la palabra en letras y lo guardo
+    this.palabraAdivinar = this.palabraElegida.split('');
+    //// 2 Preparo el array que va a ver el usuario. Tendrá el mismo número de guiones que letras en palabraAdivinar
+   for (var i=0;i<this.palabraAdivinar.length;i++){
+     this.palabraMostrar.push('_');
+   }
+    //// 3 Dibuja todo lo necesario
+    this.dibujarJuego();
+}
+
+dibujarJuego () {
+  // Convertimos un array en un texto, separado por espacios, y lo mostramos en el div resultado
+  this.nodoResultado = this.palabraMostrar.join(' ');;
+}
 
 }

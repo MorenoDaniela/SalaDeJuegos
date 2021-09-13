@@ -11,10 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IngresarService {
 
-  private usersLogged:string = '/userLogged';
-  public isLogged:Boolean = false;
-  public static userNameLogged:string;
-  public static iudUserLogged:string;
+  private usuarios:string = '/usuarios';
+  // public estaLogueado:Boolean = false;
+  // public static usuarioNombreLogueado:string;
+  // public static idUsuarioLogueado:string;
   public Usuario: Usuario = new Usuario();
 
   UsuariosRef: AngularFirestoreCollection<any>;
@@ -25,7 +25,7 @@ export class IngresarService {
       public db:AngularFirestore,
       public toastr: ToastrService
   ) {
-      this.UsuariosRef = db.collection(this.usersLogged);
+      this.UsuariosRef = db.collection(this.usuarios);
   }
 
   // Sign in with Google
@@ -40,9 +40,10 @@ export class IngresarService {
           console.log('You have been successfully logged in!');
           console.log(provider);
           console.log(result.additionalUserInfo.profile);
-          IngresarService.userNameLogged = result.additionalUserInfo.profile['name'];
-          IngresarService.iudUserLogged = result.additionalUserInfo.profile['id'];
-          this.isLogged = true;
+          this.Usuario.nombre = result.additionalUserInfo.profile['email'];
+          this.Usuario.id = result.additionalUserInfo.profile['id'];
+          this.Usuario.email = result.additionalUserInfo.profile['email'];
+          this.Usuario.estaLogueado = true;
 
           this.router.navigate(['home']);
 
@@ -52,16 +53,18 @@ export class IngresarService {
   }
 
   //Auth with emailAndPassword
-  loginWithEmailAndPassword(name:string,pass:string){
-      this.afAuth.signInWithEmailAndPassword(name,pass)
+  loginWithEmailAndPassword(email:string,pass:string){
+      this.afAuth.signInWithEmailAndPassword(email,pass)
           .then((result)=>{
-            IngresarService.iudUserLogged = result.user.uid;
-            IngresarService.userNameLogged = name;
-              this.isLogged = true;
-              console.log(this.isLogged);
-              this.UsuariosRef.add({email:name,logged:Date.now()});
+            this.Usuario.id = result.user.uid;
+            this.Usuario.email = email;
+            this.Usuario.fecha= new Date().toLocaleString();
+              this.UsuariosRef.add(
+                {email:email,
+                  fechaLogueo:new Date().toLocaleString(),
+                  id:result.user.uid});
               this.Usuario.estaLogueado=true;
-              this.showSuccessWithTimeout("Logueo exitoso.","Registro exitoso", 3000)
+              this.showSuccessWithTimeout("Logueo exitoso.","Te logueaste", 3000)
               this.router.navigate(['home']);
           })
           .catch((res)=>{
@@ -71,11 +74,11 @@ export class IngresarService {
           });
   }
 
-  registroWithEmailAndPassword(name:string,pass:string){
-      this.afAuth.createUserWithEmailAndPassword(name,pass)
+  registroWithEmailAndPassword(email:string,pass:string){
+      this.afAuth.createUserWithEmailAndPassword(email,pass)
       .then((result)=>{
           this.showSuccessWithTimeout("Cuenta creada Exitosamente.","Registro exitoso", 3000)
-          this.loginWithEmailAndPassword(name,pass);
+          this.loginWithEmailAndPassword(email,pass);
       })
       .catch((res)=>{
         console.log(res);
@@ -96,6 +99,8 @@ export class IngresarService {
   logout(){
     this.afAuth.signOut().then(()=>{
       this.Usuario.estaLogueado=false;
+      this.Usuario.email=null;
+      this.Usuario.password=null;
       this.router.navigate(['home']);
     });
   }

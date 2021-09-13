@@ -6,16 +6,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="home">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="quiensoy">Quien Soy <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="puntajes">Puntajes<span class="sr-only"></span></a>
-      </li>
-
       <ng-template [ngIf]="!this.authService.Usuario.estaLogueado">
         <li class="nav-item active">
           <a class="nav-link" href="ingreso/login" >Login<span class="sr-only"></span></a>
@@ -26,36 +16,40 @@
         </div></ng-template>
         <ng-template [ngIf]="this.authService.Usuario.estaLogueado">
           <li class="nav-item active">
+            <a class="nav-link" (click)=alHome()>Home <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" (click)=juegoPropio()>Juego propio<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" (click)=alChat()>Chat<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" (click)=aQuienSoy()>Quien Soy <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" (click)=aPuntajes()>Puntajes<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" >{{authService.Usuario.email}}<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" (click)=alAhorcado() >Ahorcado<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" (click)=logOut() >Log Out<span class="sr-only"></span></a>
           </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Juegos</a>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" (click)=alAhorcado() >Ahorcado</a>
+              <a class="dropdown-item">Mayor o Menor</a>
+              <a class="dropdown-item" >Preguntados</a>
+              <a class="dropdown-item" href="juegopropio">Juego Propio</a>
+            </div>
+          </li> -->
           <div>
           </div></ng-template>
-
-      <!-- <div *ngIf="!this.authService.Usuario.estaLogueado">
-        <li class="nav-item active">
-          <a class="nav-link" href="ingreso/login" >Login<span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="ingreso/register">Registro<span class="sr-only"></span></a>
-        </li>
-      </div> -->
-
-
-
-      <li class="nav-item active">
-        <a class="nav-link" href="juegopropio">Juego propio<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="home" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Juegos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Ahorcado</a>
-          <a class="dropdown-item" href="#">Mayor o Menor</a>
-          <a class="dropdown-item" href="#">Preguntados</a>
-          <a class="dropdown-item" href="juegopropio">Juego Propio</a>
-        </div>
-      </li>
     </ul>
 
   </div>

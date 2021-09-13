@@ -1,49 +1,41 @@
 <div id="container">
-
-  <!-- <ul class="list-group">
-    <li class="d-none" *ngFor="let letra of arrayDeLetras">{{letra}} </li>
-  </ul> -->
-
-  <div *ngFor="let letra of arrayDeLetras; let i = index" >
-    <div class="d-none"> {{letra}}</div>
-    <div >{{i}}</div>
- </div>
+  <h1 class="text-center">AHORCADO</h1>
+  <div style="height: 20px; background-color: rgba(255,0,0,0.1);">
+    <div class="alert-danger text-center w-100 h-20">
+      <span class=""> {{nodoResultado}}</span>
+         </div>
+  </div>
+<br>
 <div class="row ">
   <div class="col-md-12">
 
-      <button (click)="compararLetra('A')"> A </button>
-      <button (click)="compararLetra('B')"> B </button>
-    <button (click)="compararLetra('C')"> C </button>
-    <button (click)="compararLetra('D')"> D </button>
-    <button (click)="compararLetra('E')"> E </button>
-    <button (click)="compararLetra('F')"> F </button>
-    <button (click)="compararLetra('G')"> G </button>
-    <button (click)="compararLetra('H')"> H </button>
-    <button (click)="compararLetra('I')"> I </button>
-
-  </div>
-  <div class="col-12">
-    <button (click)="compararLetra('J')"> J </button>
-    <button (click)="compararLetra('K')"> K </button>
-    <button (click)="compararLetra('L')"> L </button>
-    <button (click)="compararLetra('M')"> M </button>
-    <button (click)="compararLetra('N')"> N </button>
-    <button (click)="compararLetra('Ñ')"> N </button>
-    <button (click)="compararLetra('O')"> O </button>
-    <button (click)="compararLetra('P')"> P </button>
-    <button (click)="compararLetra('Q')"> Q </button>
-
-  </div>
-  <div class="col-12">
-    <button (click)="compararLetra('R')"> R </button>
-    <button (click)="compararLetra('S')"> S </button>
-    <button (click)="compararLetra('T')"> T </button>
-    <button (click)="compararLetra('U')"> U </button>
-    <button (click)="compararLetra('V')"> V </button>
-    <button (click)="compararLetra('W')"> W </button>
-    <button (click)="compararLetra('X')"> X </button>
-    <button (click)="compararLetra('Y')"> Y </button>
-    <button (click)="compararLetra('Z')"> Z </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('A')"> A </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('B')"> B </button>
+    <button class="col-sm-3 alert-danger" (click)="compararLetra('C')"> C </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('D')"> D </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('E')"> E </button>
+    <button class="col-sm-3 alert-danger" (click)="compararLetra('F')"> F </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('G')"> G </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('H')"> H </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('I')"> I </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('J')"> J </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('K')"> K </button>
+    <button class="col-sm-3 alert-danger" (click)="compararLetra('L')"> L </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('M')"> M </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('N')"> N </button>
+    <button class="col-sm-3 alert-danger" (click)="compararLetra('Ñ')"> Ñ </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('O')"> O </button>
+    <button class="col-sm-3 alert-danger" (click)="compararLetra('P')"> P </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('Q')"> Q </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('R')"> R </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('S')"> S </button>
+    <button class="col-sm-3 alert-danger"  (click)="compararLetra('T')"> T </button>
+    <button class="col-sm-3 alert-success" (click)="compararLetra('U')"> U </button>
+    <button class="col-sm-3 alert-warning" (click)="compararLetra('V')"> V </button>
+    <button class="col-sm-3 alert-primary" (click)="compararLetra('W')"> W </button>
+    <button class="col-sm-4 alert-warning" (click)="compararLetra('X')"> X </button>
+    <button class="col-sm-4 alert-danger" (click)="compararLetra('Y')"> Y </button>
+    <button class="col-sm-4 alert-success" (click)="compararLetra('Z')"> Z </button>
   </div>
 </div>
 
