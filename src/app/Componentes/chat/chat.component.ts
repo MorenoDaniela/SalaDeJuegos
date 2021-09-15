@@ -22,6 +22,7 @@ export class ChatComponent implements OnInit {
 
   mandarMensaje(){
     this.chatService.enviarMensaje(this.mensaje,this.authService.Usuario.id,this.authService.Usuario.email);
+    this.mensaje="";
   }
 
 

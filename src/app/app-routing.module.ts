@@ -7,6 +7,7 @@ import { ErrorComponent } from './Paginas/error/error.component';
 import { BannerAeropuertoComponent } from './Componentes/banner-aeropuerto/banner-aeropuerto.component';
 import { AhorcadoComponent } from './Componentes/ahorcado/ahorcado.component';
 import { ChatComponent } from './Componentes/chat/chat.component';
+import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'error', component:ErrorComponent},
   {path: 'juegopropio', component:BannerAeropuertoComponent},
   {path:'ahorcado', component:AhorcadoComponent},
-  {path:"chat",component:ChatComponent}
+  {path:"chat",component:ChatComponent},
+  {path:"mayoromenor", component:MayorOMenorComponent}
 ];
 
 @NgModule({

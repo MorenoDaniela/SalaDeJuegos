@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ChatComponent } from './Componentes/chat/chat.component';
+import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChatComponent } from './Componentes/chat/chat.component';
     ErrorComponent,
     BannerAeropuertoComponent,
     AhorcadoComponent,
-    ChatComponent
+    ChatComponent,
+    MayorOMenorComponent
   ],
   imports: [
     FormsModule,

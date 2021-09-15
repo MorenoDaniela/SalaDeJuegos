@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="col-12">
+    <div class="row">
+      <h1 >MAYOR O MENOR</h1>
+      <input class="text-info col-10" readonly type="text" value="Tienes que elegir si la proxima carta que saldrá es mayor o menor a la que se ve ahora, si aciertas sumas un punto.">
+    </div>
+    <div class="card">
+      <!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> -->
+      <div class="container">
+        <h4><b>{{cartaActual.valorCarta}}</b></h4>
+        <p>{{cartaActual.tipoCarta}}</p>
+      </div>
+    </div>
+    <div class="col-md-12">
+
+      <button class="col-sm-4 alert-warning" style="height: 60px;" (click)="eligioMenor()"> < </button>
+      <button class="col-sm-4 alert-danger"  style="height: 60px;"(click)="eligioMayor()"> ></button>
+    </div>
+    <!-- <img src="../../../assets/mazo.gif" class="rounded float-end" alt="..."> -->
+  </div>
+
