@@ -19,7 +19,10 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cargarMensajes();
+    setTimeout(() => {
+      this.cargarMensajes();
+    }, 1000);
+
   }
 
   mandarMensaje(){

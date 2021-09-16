@@ -15,7 +15,7 @@ export class AhorcadoComponent implements OnInit {
   palabraAdivinar = [];
   palabraMostrar = [];
   nodoResultado:any;
-  cantidadDeIntentos:number = 10;
+  cantidadDeIntentos:number;
 
 
   constructor() { }
@@ -48,6 +48,7 @@ export class AhorcadoComponent implements OnInit {
   }
 
   prepararJuego () {
+    this.cantidadDeIntentos=10;
     this.indiceArray= Math.floor(Math.random() * (this.cantidadPalabras -1));
     this.palabraElegida = this.arrayPalabras[this.indiceArray];
     console.log(this.palabraElegida);
@@ -68,8 +69,13 @@ dibujarJuego () {
 
 empezarDeNuevo()
 {
+  this.indiceArray =null;
+  this.palabraElegida=null;
+
+  this.palabraAdivinar = [];
+  this.palabraMostrar = [];
+  this.nodoResultado=null;
   this.prepararJuego();
-  this.cantidadDeIntentos=10;
 }
 
 }
