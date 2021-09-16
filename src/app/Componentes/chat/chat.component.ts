@@ -12,6 +12,8 @@ import { map } from 'rxjs/operators';
 export class ChatComponent implements OnInit {
   mensaje: string;
   listadoMensajesMostrar: Array<Mensaje> = new Array<Mensaje>();
+  error:string="No puedes enviar mensajes vacios.";
+  hayError:boolean=false;
   constructor(public authService: IngresarService, public chatService: ChatService,public router: Router )
   {
   }
@@ -21,8 +23,15 @@ export class ChatComponent implements OnInit {
   }
 
   mandarMensaje(){
-    this.chatService.enviarMensaje(this.mensaje,this.authService.Usuario.id,this.authService.Usuario.email);
-    this.mensaje="";
+    if (this.mensaje=="" || this.mensaje==null)
+    {
+      this.hayError=true;
+    }else{
+      this.chatService.enviarMensaje(this.mensaje,this.authService.Usuario.id,this.authService.Usuario.email);
+      this.mensaje="";
+      this.hayError=false;
+    }
+
   }
 
 

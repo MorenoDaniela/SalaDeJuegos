@@ -81,4 +81,10 @@ export class MayorOMenorComponent implements OnInit {
     console.log(this.puntosAcumulados);
   }
 
+
+  empezarDeNuevo(){
+    this.creacionTodasCartas();
+    this.empezarJuego();
+    this.puntosAcumulados = 0
+  }
 }

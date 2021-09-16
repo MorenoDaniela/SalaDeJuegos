@@ -38,10 +38,16 @@
     <button class="col-sm-4 alert-success" (click)="compararLetra('Z')"> Z </button>
   </div>
 </div>
-
-<div>
-  <span class="alert-info">
-    graphic design is my passion
+<br>
+<div class ="text-center"style="margin:auto;">
+  <span >
+    Te quedan: {{cantidadDeIntentos}} intentos.
   </span>
+  <br>
+  <div class="col-md-12">
+    <button class="col-sm-4 alert-success" style="height: 60px;" (click)="empezarDeNuevo()"> Empezar de nuevo </button>
+  </div>
+  <br>
 </div>
+
 </div>

@@ -15,7 +15,7 @@ export class AhorcadoComponent implements OnInit {
   palabraAdivinar = [];
   palabraMostrar = [];
   nodoResultado:any;
-
+  cantidadDeIntentos:number = 10;
 
 
   constructor() { }
@@ -35,6 +35,13 @@ export class AhorcadoComponent implements OnInit {
             this.palabraMostrar[posicion] = letraAdivinar;
         }
     }
+      if (!this.palabraAdivinar.includes(letraUsuario))
+      {
+        console.log(" antes " +this.cantidadDeIntentos);
+        this.cantidadDeIntentos = this.cantidadDeIntentos-1;
+        console.log("dsps " +this.cantidadDeIntentos);
+      }
+
     //// 4 Mostramos los cambios
     this.dibujarJuego();
 
@@ -57,6 +64,12 @@ export class AhorcadoComponent implements OnInit {
 dibujarJuego () {
   // Convertimos un array en un texto, separado por espacios, y lo mostramos en el div resultado
   this.nodoResultado = this.palabraMostrar.join(' ');;
+}
+
+empezarDeNuevo()
+{
+  this.prepararJuego();
+  this.cantidadDeIntentos=10;
 }
 
 }

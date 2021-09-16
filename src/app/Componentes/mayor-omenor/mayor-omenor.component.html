@@ -4,7 +4,7 @@
     <div class="row">
       <h1 >MAYOR O MENOR</h1>
       <h5 class="col-10" style="margin: auto;">
-        Tenes que elegir si la proxima carta que saldrá es mayor o menor a la que se ve ahora, si aciertas sumas un punto.
+        Tenes que elegir si la proxima carta que saldrá es mayor o menor a la que se ve ahora, si acertas sumas un punto.
       </h5>
       <!-- <textarea   readonly type="text" > </textarea> -->
       <!-- <input class="bg-info col-10" readonly type="text" value="Tienes que elegir si la proxima carta que saldrá es mayor o menor a la que se ve ahora, si aciertas sumas un punto."> -->
@@ -78,6 +78,10 @@
 
         <button class="col-sm-4 alert-warning" style="height: 60px;" (click)="eligioMenor()"> Menor </button>
         <button class="col-sm-4 alert-danger"  style="height: 60px;"(click)="eligioMayor()"> Mayor</button>
+      </div>
+      <br>
+      <div class="col-md-12">
+        <button class="col-sm-4 alert-sucess" style="height: 60px;" (click)="empezarDeNuevo()"> Empezar de nuevo </button>
       </div>
       <br>
       <h4 class="text-center"><b>Puntaje acumulado: {{puntosAcumulados}}</b></h4>
