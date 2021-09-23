@@ -16,6 +16,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ChatComponent } from './Componentes/chat/chat.component';
 import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.component';
+import { CanActivateGuard } from './can-activate.guard';
+import { PokedexComponent } from './Componentes/pokedex/pokedex.component';
+import { PokedexScreenComponent } from './Componentes/pokedex-screen/pokedex-screen.component';
+import { PokedexFormComponent } from './Componentes/pokedex-form/pokedex-form.component';
+import { StatComponent } from './Componentes/stat/stat.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ColorsComponent } from './Componentes/colors/colors.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,12 @@ import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.co
     BannerAeropuertoComponent,
     AhorcadoComponent,
     ChatComponent,
-    MayorOMenorComponent
+    MayorOMenorComponent,
+    PokedexComponent,
+    PokedexScreenComponent,
+    PokedexFormComponent,
+    StatComponent,
+    ColorsComponent
   ],
   imports: [
     FormsModule,
@@ -35,9 +47,10 @@ import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.co
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
-	  ToastrModule.forRoot()
+	  ToastrModule.forRoot(),
+    HttpClientModule 
   ],
-  providers: [],
+  providers: [CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,14 +9,19 @@ import { IngresarService } from 'src/app/Servicios/ingresar.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // user: Usuario;
-
+  Usuario: Usuario= new Usuario();
   constructor(public authService: IngresarService, public router: Router) {
 
   }
 
   ngOnInit(): void {
-    // this.user.email=this.authService.Usuario.email;
+    if (this.authService.getItemLocal()==null)
+    {
+      this.Usuario.estaLogueado=false;
+    }else
+    {
+      this.Usuario = this.authService.getItemLocal();
+    }
   }
 
 }

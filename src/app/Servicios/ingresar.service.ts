@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import * as firebase from 'firebase';
 import { Usuario } from '../Clases/usuario';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IngresarService {
+export class IngresarService{
 
   private usuarios:string = '/usuarios';
   // public estaLogueado:Boolean = false;
@@ -17,6 +18,7 @@ export class IngresarService {
   // public static idUsuarioLogueado:string;
   public Usuario: Usuario = new Usuario();
 
+  public User : any;
   UsuariosRef: AngularFirestoreCollection<any>;
 
   constructor(
@@ -27,6 +29,7 @@ export class IngresarService {
   ) {
       this.UsuariosRef = db.collection(this.usuarios);
   }
+
 
   // Sign in with Google
   GoogleAuth() {
@@ -59,16 +62,19 @@ export class IngresarService {
             this.Usuario.id = result.user.uid;
             this.Usuario.email = email;
             this.Usuario.fecha= new Date().toLocaleString();
+            this.Usuario.estaLogueado=true;
+           this.setItemLocal();
               this.UsuariosRef.add(
                 {email:email,
                   fechaLogueo:new Date().toLocaleString(),
                   id:result.user.uid});
-              this.Usuario.estaLogueado=true;
+              // this.Usuario.estaLogueado=true;
               this.showSuccessWithTimeout("Logueo exitoso.","Te logueaste", 3000)
               this.router.navigate(['home']);
           })
           .catch((res)=>{
             this.Usuario.estaLogueado=false;
+            // this.Usuario.estaLogueado=false;
             this.showErrorWithTimeout("No se pudo loguear", "Error", 3000)
               this.router.navigate(['error']);
           });
@@ -101,8 +107,12 @@ export class IngresarService {
       this.Usuario.estaLogueado=false;
       this.Usuario.email=null;
       this.Usuario.password=null;
-      this.router.navigate(['home']);
+      this.Usuario.fecha=null;
+      // this.router.navigate(['ingreso/login']);
     });
+    localStorage.removeItem('usuarioApp');
+    this.router.navigate(['home']);
+
   }
 
   showSuccessWithTimeout(message, title, timespan){
@@ -115,6 +125,37 @@ export class IngresarService {
     this.toastr.error(message, title ,{
       timeOut :  timespan
     })
+  }
+
+  estaLogueado()
+  {
+   this.afAuth.onAuthStateChanged(user=> {
+      if (user){
+        this.User = user;
+      }else
+      {
+        this.User=null;
+      }
+    });
+    return this.User;
+  }
+
+  setItemLocal()
+  {
+    localStorage.setItem('usuarioApp',JSON.stringify(this.Usuario));
+  }
+
+  getItemLocal()
+  {
+    var user = localStorage.getItem('usuarioApp');
+    if (user!=null)
+    {
+      return JSON.parse(user);
+    }else{
+      return null;
+    }
+
+    
   }
 
 }

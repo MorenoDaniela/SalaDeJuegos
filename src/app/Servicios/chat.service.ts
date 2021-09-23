@@ -15,6 +15,7 @@ export class ChatService {
   constructor(public afAuth: AngularFireAuth, public router: Router, public db:AngularFirestore, public toastr: ToastrService)
   {
     this.MensajesRef = db.collection(this.mensajes, ref => ref.orderBy('fechaMensaje'));
+    // this.MensajesRef = db.collection(this.mensajes, ref => ref.where('id','==','unid'));
   }
 
  getMensajes(): AngularFirestoreCollection<any> {

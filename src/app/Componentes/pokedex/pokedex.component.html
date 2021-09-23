@@ -1,0 +1,61 @@
+<app-navbar [usuario]="Usuario"></app-navbar>
+<div class="container" style="background-color: darksalmon;">
+  
+    <h1 class="text-center">Poke-Preguntados</h1>
+  
+  <br>
+  <div class="pokedex" style="background-color: #dd082f;">
+    <div class="pokedex-left">
+      <div class="pokedex-left-top">
+        <div class="light is-sky is-big" [class.is-animates]="loading"></div>
+        <div class="light is-red"></div>
+        <div class="light is-yellow"></div>
+        <div class="light is-green"></div>
+      </div>
+      <div class="pokedex-screen-container">
+        <app-pokedex-screen [loading]='loading'
+        [error]='error'
+        [pokemon]='pokemon'></app-pokedex-screen>
+      </div>
+      <div class="pokedex-left-bottom">
+        <div class="pokedex-left-bottom-lights">
+          <div class="light is-blue is-medium"></div>
+          <div class="light is-green is-large"></div>
+          <div class="light is-orange is-large"></div>
+        </div>
+        <!-- <app-pokedex-form (searchPokemon)='handleSubmit($event)'></app-pokedex-form> -->
+      </div>
+      <div>
+        <h6 class="pokemon-name text-center" style="color:ghostwhite">¿Cómo se llama este pokemon?</h6>
+      </div>
+      <div>
+        <!-- <button>{{pokemon2.name}}</button>
+        <button>{{pokemon3.name}}</button>
+        <button>{{pokemon4.name}}</button>
+        <button>{{pokemonAux.name}}</button> -->
+        <div *ngFor="let poke of arrayPokemons">
+          <button class="alert-danger" style="width: 100%; border-radius: 5%;" (click)="elegirRespuesta(poke.id)">{{poke.name}}</button>
+          </div>
+      </div>
+      
+    </div>
+    
+    <!-- <div class="pokedex-right-front"></div>
+    <div class="pokedex-right-back"></div> -->
+  </div>
+  <br>
+  <div class="row text-center"style="margin:auto;">
+    
+    <br>
+    <div class="col-12">
+      <span >Puntaje acumulado: {{this.puntosAcumulados}}</span>
+
+    </div>
+    <br>
+    <div class="col-12">
+      <button class="alert-success" style="width: 50%; border-radius: 5%;" (click)="empezarDeNuevo()">Empezar de nuevo</button>
+    </div>
+    <br>
+  </div>
+   <br>
+</div>

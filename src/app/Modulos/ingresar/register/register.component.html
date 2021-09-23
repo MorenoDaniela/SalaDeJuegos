@@ -1,6 +1,7 @@
+<!-- <app-navbar [usuario]="Usuario"></app-navbar> -->
 <div class="login">
-  <input type="text" placeholder="Email" [(ngModel)]='authService.Usuario.email' >
-  <input type="password" placeholder="Contraseña" [(ngModel)]='authService.Usuario.password'>
+  <input type="text" placeholder="Email" [(ngModel)]='Usuario.email' >
+  <input type="password" placeholder="Contraseña" [(ngModel)]='Usuario.password'>
   <a class="forgot">¿Olvidaste tu contraseña?</a>
   <input type="submit" (click)="crearCuenta()" value="Registrate">
 </div>

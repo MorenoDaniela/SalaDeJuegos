@@ -4,6 +4,7 @@ import { ChatService } from 'src/app/Servicios/chat.service';
 import { IngresarService } from 'src/app/Servicios/ingresar.service';
 import { Mensaje } from 'src/app/Clases/mensaje';
 import { map } from 'rxjs/operators';
+import { Usuario } from 'src/app/Clases/usuario';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -14,15 +15,21 @@ export class ChatComponent implements OnInit {
   listadoMensajesMostrar: Array<Mensaje> = new Array<Mensaje>();
   error:string="No puedes enviar mensajes vacios.";
   hayError:boolean=false;
+  Usuario : Usuario = new Usuario();
   constructor(public authService: IngresarService, public chatService: ChatService,public router: Router )
   {
+    
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.cargarMensajes();
-    }, 1000);
-
+    this.Usuario = this.authService.getItemLocal();
+    if (this.Usuario ==null)
+    {
+      this.Usuario.estaLogueado=false;
+    }
+      setTimeout(() => {
+        this.cargarMensajes();
+      }, 1000);
   }
 
   mandarMensaje(){
@@ -30,7 +37,7 @@ export class ChatComponent implements OnInit {
     {
       this.hayError=true;
     }else{
-      this.chatService.enviarMensaje(this.mensaje,this.authService.Usuario.id,this.authService.Usuario.email);
+      this.chatService.enviarMensaje(this.mensaje,this.Usuario .id,this.Usuario.email);
       this.mensaje="";
       this.hayError=false;
     }
@@ -50,7 +57,7 @@ export class ChatComponent implements OnInit {
           mensaje2.id = mensaje.payload.doc.data().id;
           mensaje2.mensaje = mensaje.payload.doc.data().mensaje;
 
-          if (this.authService.Usuario.id==mensaje.payload.doc.data().id)
+          if (this.Usuario.id==mensaje.payload.doc.data().id)
           {
             mensaje2.siSoy=true;
           }else

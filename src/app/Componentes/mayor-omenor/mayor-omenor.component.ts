@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Carta } from 'src/app/Clases/carta';
+import { Usuario } from 'src/app/Clases/usuario';
+import { IngresarService } from 'src/app/Servicios/ingresar.service';
 
 @Component({
   selector: 'app-mayor-omenor',
@@ -13,10 +15,17 @@ export class MayorOMenorComponent implements OnInit {
   cartaSiguiente:Carta= new Carta();
   arrayCartas:Array<Carta> = [];
   puntosAcumulados:number =0;
-
-  constructor() { }
+Usuario: Usuario = new Usuario();
+  constructor(public authService: IngresarService) { }
 
   ngOnInit(): void {
+    if (this.authService.getItemLocal()==null)
+    {
+      this.Usuario.estaLogueado=false;
+    }else
+    {
+      this.Usuario = this.authService.getItemLocal();
+    }
     this.creacionTodasCartas();
     this.empezarJuego();
   }

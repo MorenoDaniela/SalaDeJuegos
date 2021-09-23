@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Clases/usuario';
 import { ChatService } from 'src/app/Servicios/chat.service';
@@ -9,17 +9,21 @@ import { IngresarService } from 'src/app/Servicios/ingresar.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
 
+export class NavbarComponent implements OnInit {
+  @Input() usuario: Usuario;
+  // usuario: Usuario = new Usuario();
   constructor(public authService: IngresarService, public router: Router, public chatService: ChatService)
    { }
 
   ngOnInit(): void {
+
   }
 
   logOut()
   {
     this.authService.logout();
+    // localStorage.removeItem('usuarioApp');
   }
 
   alChat()
@@ -51,5 +55,14 @@ export class NavbarComponent implements OnInit {
   alMayorOMenor()
   {
     this.router.navigate(['mayoromenor']);
+  }
+
+  alPreguntados()
+  {
+    this.router.navigate(['preguntados']);
+  }
+  alColors()
+  {
+    this.router.navigate(['colors']);
   }
 }

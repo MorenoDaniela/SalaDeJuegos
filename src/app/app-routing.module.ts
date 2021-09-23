@@ -8,21 +8,26 @@ import { BannerAeropuertoComponent } from './Componentes/banner-aeropuerto/banne
 import { AhorcadoComponent } from './Componentes/ahorcado/ahorcado.component';
 import { ChatComponent } from './Componentes/chat/chat.component';
 import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.component';
+import { CanActivateGuard } from './can-activate.guard';
+import { PokedexComponent } from './Componentes/pokedex/pokedex.component';
+import { ColorsComponent } from './Componentes/colors/colors.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
   {path: 'home', component:HomeComponent},
   {path: 'ingreso', loadChildren:()=>import('./Modulos/ingresar/ingresar.module').then(m => IngresarModule)},
-  {path:'quiensoy', component:QuienSoyComponent},
+  {path:'quiensoy', component:QuienSoyComponent, canActivate:[CanActivateGuard]},
   {path: 'error', component:ErrorComponent},
-  {path: 'juegopropio', component:BannerAeropuertoComponent},
-  {path:'ahorcado', component:AhorcadoComponent},
-  {path:"chat",component:ChatComponent},
-  {path:"mayoromenor", component:MayorOMenorComponent}
+  {path: 'juegopropio', component:BannerAeropuertoComponent, canActivate:[CanActivateGuard]},
+  {path:'ahorcado', component:AhorcadoComponent, canActivate:[CanActivateGuard]},
+  {path:"chat",component:ChatComponent, canActivate:[CanActivateGuard]},
+  {path:"mayoromenor", component:MayorOMenorComponent,canActivate:[CanActivateGuard]},
+  {path:"preguntados",component:PokedexComponent,canActivate:[CanActivateGuard]},
+  {path:"colors",component:ColorsComponent,canActivate:[CanActivateGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule] 
 })
 export class AppRoutingModule { }

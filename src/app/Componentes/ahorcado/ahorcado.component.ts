@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/Clases/usuario';
+import { IngresarService } from 'src/app/Servicios/ingresar.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -16,11 +18,18 @@ export class AhorcadoComponent implements OnInit {
   palabraMostrar = [];
   nodoResultado:any;
   cantidadDeIntentos:number;
+  Usuario: Usuario = new Usuario();
 
-
-  constructor() { }
+  constructor(public authService: IngresarService) { }
 
   ngOnInit(): void {
+    if (this.authService.getItemLocal()==null)
+    {
+      this.Usuario.estaLogueado=false;
+    }else
+    {
+      this.Usuario  = this.authService.getItemLocal();
+    }
     this.prepararJuego();
   }
 
