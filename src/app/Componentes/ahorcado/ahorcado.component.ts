@@ -51,6 +51,15 @@ export class AhorcadoComponent implements OnInit {
         console.log("dsps " +this.cantidadDeIntentos);
       }
 
+      if (this.cantidadDeIntentos==0){
+        this.authService.showErrorWithTimeout("Perdiste","Perdiste",2000);
+        this.empezarDeNuevo();//probar si empeiza bien
+      }
+      if (!this.palabraMostrar.includes("_")){
+        console.log(this.palabraAdivinar.includes("_"));
+        this.authService.showSuccessWithTimeout("Ganaste","Ganaste",2000);
+      }
+
     //// 4 Mostramos los cambios
     this.dibujarJuego();
 
