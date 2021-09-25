@@ -1,5 +1,5 @@
 <app-navbar [usuario]="Usuario"></app-navbar>
-<div class="container" style="background-color: darksalmon;">
+<div class="container" style="background-color: #43ECE4;" >
     <br>
     <h1 class="text-center"style="margin: auto;">COLORS</h1>
     <br>
@@ -59,12 +59,15 @@
                 ¿El significado se corresponde con el color del texto?
             </h1>
         </div>
-        <div class="col-6 text-center">
-            <button class="btn btn-success" (click)="ElegirSI();">SI</button>
-        </div>
-        <div class="col-6 text-center">
-            <button class="btn btn-danger" (click)="ElegirNO();">NO</button>
-        </div>
+        
+                <div class="col-6 text-center">
+                    <button class="btn btn-success" (click)="ElegirSI();">SI</button>
+                </div>
+                <div class="col-6 text-center">
+                    <button class="btn btn-danger" (click)="ElegirNO();">NO</button>
+                </div>
+            
+        
         <div class="text-center">
             <span>Puntaje acumulado: {{puntajeAcumulado}}</span>
         </div>

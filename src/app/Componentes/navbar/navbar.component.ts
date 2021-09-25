@@ -48,21 +48,9 @@ export class NavbarComponent implements OnInit {
   {
     this.router.navigate(['quiensoy']);
   }
-  alAhorcado()
-  {
-    this.router.navigate(['ahorcado']);
-  }
-  alMayorOMenor()
-  {
-    this.router.navigate(['mayoromenor']);
-  }
 
-  alPreguntados()
+  alMenuDeJuegos()
   {
-    this.router.navigate(['preguntados']);
-  }
-  alColors()
-  {
-    this.router.navigate(['colors']);
+    this.router.navigate(['juegos']);
   }
 }

@@ -11,6 +11,8 @@ import { MayorOMenorComponent } from './Componentes/mayor-omenor/mayor-omenor.co
 import { CanActivateGuard } from './can-activate.guard';
 import { PokedexComponent } from './Componentes/pokedex/pokedex.component';
 import { ColorsComponent } from './Componentes/colors/colors.component';
+import { MenuDeJuegosComponent } from './Paginas/menu-de-juegos/menu-de-juegos.component';
+import { PuntajesComponent } from './Componentes/puntajes/puntajes.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:"chat",component:ChatComponent, canActivate:[CanActivateGuard]},
   {path:"mayoromenor", component:MayorOMenorComponent,canActivate:[CanActivateGuard]},
   {path:"preguntados",component:PokedexComponent,canActivate:[CanActivateGuard]},
-  {path:"colors",component:ColorsComponent,canActivate:[CanActivateGuard]}
+  {path:"colors",component:ColorsComponent,canActivate:[CanActivateGuard]},
+  {path:"juegos", component:MenuDeJuegosComponent,canActivate:[CanActivateGuard]},
+  {path:"puntajes", component:PuntajesComponent,canActivate:[CanActivateGuard]}
 ];
 
 @NgModule({

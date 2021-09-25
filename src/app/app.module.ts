@@ -23,6 +23,9 @@ import { PokedexFormComponent } from './Componentes/pokedex-form/pokedex-form.co
 import { StatComponent } from './Componentes/stat/stat.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ColorsComponent } from './Componentes/colors/colors.component';
+import { MenuDeJuegosComponent } from './Paginas/menu-de-juegos/menu-de-juegos.component';
+import { PuntajesComponent } from './Componentes/puntajes/puntajes.component';
+import { EncuestaComponent } from './Componentes/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { ColorsComponent } from './Componentes/colors/colors.component';
     PokedexScreenComponent,
     PokedexFormComponent,
     StatComponent,
-    ColorsComponent
+    ColorsComponent,
+    MenuDeJuegosComponent,
+    PuntajesComponent,
+    EncuestaComponent
   ],
   imports: [
     FormsModule,
