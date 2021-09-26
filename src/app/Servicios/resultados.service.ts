@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ResultadosService {
-  private resultados:string = '/mensajes';
+  private resultados:string = '/resultados';
   ResultadosRef: AngularFirestoreCollection<any>;
   listadoResultadosMostrar: any;
 
   constructor(public afAuth: AngularFireAuth, public router: Router, public db:AngularFirestore)
   {
-    this.ResultadosRef = db.collection(this.resultados, ref => ref.orderBy('fechaResultado'));
+    this.ResultadosRef = db.collection(this.resultados, ref => ref.orderBy('puntaje','desc'));
   }
 
   getAll(): AngularFirestoreCollection<any> {
@@ -26,6 +26,6 @@ export class ResultadosService {
         puntaje:puntaje,
         id:id,
         tipoDeJuego:tipoDeJuego,
-        fechaMensaje:new Date().toLocaleString()});
+        fechaPuntaje:new Date().toLocaleString()});
   }
 }

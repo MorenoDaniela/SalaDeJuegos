@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
     {
       this.hayError=true;
     }else{
-      this.chatService.enviarMensaje(this.mensaje,this.Usuario .id,this.Usuario.email);
+      this.chatService.enviarMensaje(this.mensaje,this.Usuario.id,this.Usuario.email);
       this.mensaje="";
       this.hayError=false;
     }

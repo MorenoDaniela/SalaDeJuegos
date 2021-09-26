@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/Clases/color';
 import { Usuario } from 'src/app/Clases/usuario';
 import { IngresarService } from 'src/app/Servicios/ingresar.service';
+import { ResultadosService } from 'src/app/Servicios/resultados.service';
 
 @Component({
   selector: 'app-colors',
@@ -14,7 +15,7 @@ export class ColorsComponent implements OnInit {
   colorDerecha:Color = new Color();;
   opciones: any = ['amarillo', 'azul','verde','rojo'];
   puntajeAcumulado:number=0;
-  constructor(public authService: IngresarService) { }
+  constructor(public authService: IngresarService,public puntajesService: ResultadosService) { }
   
 
   ngOnInit(): void {
@@ -40,7 +41,6 @@ export class ColorsComponent implements OnInit {
       this.colorDerecha.palabra=this.opciones[opcion3];
       this.colorDerecha.colorReal=this.opciones[opcion4];
     
-      console.log(opcion1 +" "+ opcion2 +" "+ opcion3+" " + opcion4);
   }
 
   ElegirSI()
@@ -49,10 +49,13 @@ export class ColorsComponent implements OnInit {
     {
       this.puntajeAcumulado= this.puntajeAcumulado+1;
       this.authService.showSuccessWithTimeout("Acertaste","Acertaste", 2000);
+      this.crearColorAleatorio();
     }else{
       this.authService.showErrorWithTimeout("Error","Error", 2000);
+      this.mandarPuntaje();
+      this.empezarDeNuevo();
     }
-    this.crearColorAleatorio();
+    
   }
   ElegirNO()
   {
@@ -60,10 +63,13 @@ export class ColorsComponent implements OnInit {
     {
       this.puntajeAcumulado= this.puntajeAcumulado+1;
       this.authService.showSuccessWithTimeout("Acertaste","Acertaste", 2000);
+      this.crearColorAleatorio();
     }else{
       this.authService.showErrorWithTimeout("Error","Error", 2000);
+      this.mandarPuntaje();
+      this.empezarDeNuevo();
     }
-    this.crearColorAleatorio();
+    
   }
 
 
@@ -74,5 +80,14 @@ export class ColorsComponent implements OnInit {
   empezarDeNuevo(){
     this.crearColorAleatorio();
     this.puntajeAcumulado=0;
+  }
+
+  mandarPuntaje(){
+    console.log("adentro");
+      this.puntajesService.enviarResultado(this.puntajeAcumulado,this.Usuario.id,this.Usuario.email, "colors");
+      console.log("afuera");
+      // this.mensaje="";
+      // this.hayError=false;
+
   }
 }
