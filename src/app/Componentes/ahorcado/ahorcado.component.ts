@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Clases/usuario';
 import { IngresarService } from 'src/app/Servicios/ingresar.service';
+import { ResultadosService } from 'src/app/Servicios/resultados.service';
+// import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-ahorcado',
@@ -19,8 +21,8 @@ export class AhorcadoComponent implements OnInit {
   nodoResultado:any;
   cantidadDeIntentos:number;
   Usuario: Usuario = new Usuario();
-
-  constructor(public authService: IngresarService) { }
+puntajeAcumulado:number=0;
+  constructor(public authService: IngresarService, public puntajesService: ResultadosService) { }
 
   ngOnInit(): void {
     if (this.authService.getItemLocal()==null)
@@ -53,11 +55,13 @@ export class AhorcadoComponent implements OnInit {
 
       if (this.cantidadDeIntentos==0){
         this.authService.showErrorWithTimeout("Perdiste","Perdiste",2000);
+        this.mandarPuntaje();
         this.empezarDeNuevo();//probar si empeiza bien
       }
       if (!this.palabraMostrar.includes("_")){
         console.log(this.palabraAdivinar.includes("_"));
         this.authService.showSuccessWithTimeout("Ganaste","Ganaste",2000);
+        this.puntajeAcumulado=this.puntajeAcumulado+10;
       }
 
     //// 4 Mostramos los cambios
@@ -96,4 +100,7 @@ empezarDeNuevo()
   this.prepararJuego();
 }
 
+mandarPuntaje(){
+  this.puntajesService.enviarResultado(this.puntajeAcumulado,this.Usuario.id,this.Usuario.email, "ahorcado");
+}
 }

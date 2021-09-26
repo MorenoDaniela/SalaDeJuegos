@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Carta } from 'src/app/Clases/carta';
 import { Usuario } from 'src/app/Clases/usuario';
 import { IngresarService } from 'src/app/Servicios/ingresar.service';
+import { ResultadosService } from 'src/app/Servicios/resultados.service';
 
 @Component({
   selector: 'app-mayor-omenor',
@@ -16,7 +17,7 @@ export class MayorOMenorComponent implements OnInit {
   arrayCartas:Array<Carta> = [];
   puntosAcumulados:number =0;
 Usuario: Usuario = new Usuario();
-  constructor(public authService: IngresarService) { }
+  constructor(public authService: IngresarService, public puntajesService: ResultadosService) { }
 
   ngOnInit(): void {
     if (this.authService.getItemLocal()==null)
@@ -37,11 +38,14 @@ Usuario: Usuario = new Usuario();
     // console.log(this.cartaSiguiente);
     if (this.cartaSiguiente.valorCarta>=this.cartaActual.valorCarta)
     {
-      console.log('gano, es mayor');
+      this.authService.showSuccessWithTimeout("Acertaste","Es Mayor", 2000);
       this.puntosAcumulados = this.puntosAcumulados+1;
     }else
     {
-      console.log('perdio, es menor');
+      this.authService.showErrorWithTimeout("Perdiste","Es Mayor", 2000);
+     
+      this.mandarPuntaje();
+      this.puntosAcumulados=0;
     }
     this.seguirJuego();
   }
@@ -52,11 +56,14 @@ Usuario: Usuario = new Usuario();
     // console.log(this.cartaSiguiente);
     if (this.cartaSiguiente.valorCarta<=this.cartaActual.valorCarta)
     {
-      console.log('gano, es menor');
+      this.authService.showSuccessWithTimeout("Acertaste","Es Menor", 2000);
       this.puntosAcumulados = this.puntosAcumulados+1;
     }else
     {
-      console.log('perdio, es mayor');
+      this.authService.showErrorWithTimeout("Perdiste","Es Menor", 2000);
+     
+      this.mandarPuntaje();
+      this.puntosAcumulados=0;
     }
     this.seguirJuego();
   }
@@ -96,4 +103,8 @@ Usuario: Usuario = new Usuario();
     this.empezarJuego();
     this.puntosAcumulados = 0
   }
+
+  mandarPuntaje(){
+    this.puntajesService.enviarResultado(this.puntosAcumulados,this.Usuario.id,this.Usuario.email, "mayor o menor");
+}
 }

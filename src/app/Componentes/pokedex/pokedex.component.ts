@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Clases/usuario';
 import { IngresarService } from 'src/app/Servicios/ingresar.service';
 import { PokemonService } from 'src/app/Servicios/pokemon.service';
+import { ResultadosService } from 'src/app/Servicios/resultados.service';
 
 @Component({
   selector: 'app-pokedex',
@@ -20,7 +21,7 @@ public pokemonID3:String;
 public pokemonID4:String;
 public arrayPokemons :Array<any> = [];
 public puntosAcumulados: number=0;
-  constructor(public pokemonService : PokemonService, public authService: IngresarService) { }
+  constructor(public pokemonService : PokemonService, public authService: IngresarService, public puntajesService: ResultadosService) { }
 
   async ngOnInit(): Promise<void> {
     if (this.authService.getItemLocal()==null)
@@ -95,10 +96,13 @@ public puntosAcumulados: number=0;
     {
       this.authService.showSuccessWithTimeout("Acertaste","Acertaste", 2000);
       this.puntosAcumulados= this.puntosAcumulados+1;
+      this.searchPokemon();
     }else{
-      this.authService.showErrorWithTimeout("Error","Error", 2000)
+      this.authService.showErrorWithTimeout("Error","Error", 2000);
+      this.mandarPuntaje();
+      this.empezarDeNuevo();
     }
-    this.searchPokemon();
+   
   }
 
   empezarDeNuevo()
@@ -106,4 +110,8 @@ public puntosAcumulados: number=0;
     this.puntosAcumulados=0;
     this.searchPokemon();
   }
+
+  mandarPuntaje(){
+    this.puntajesService.enviarResultado(this.puntosAcumulados,this.Usuario.id,this.Usuario.email, "preguntados");
+}
 }

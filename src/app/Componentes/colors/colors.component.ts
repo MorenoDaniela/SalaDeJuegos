@@ -83,11 +83,6 @@ export class ColorsComponent implements OnInit {
   }
 
   mandarPuntaje(){
-    console.log("adentro");
       this.puntajesService.enviarResultado(this.puntajeAcumulado,this.Usuario.id,this.Usuario.email, "colors");
-      console.log("afuera");
-      // this.mensaje="";
-      // this.hayError=false;
-
   }
 }
