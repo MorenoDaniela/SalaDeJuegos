@@ -4,34 +4,33 @@
   <br>
   <h1 class="text-center">PUNTAJES</h1>
 <br>
-<div class="table-responsive">
-  <table class="table table-bordered" style="background-color: rgb(123, 218, 231);">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Juego</th>
-        <th scope="col">Puntaje</th>
-      </tr>
-    </thead>
-    <tbody>
-        
-            <tr *ngFor="let punt of listadoPuntajesMostrar; index as i" [ngClass]="{'table-success': punt.siSoy === true,
-            'table-primary': punt.siSoy === false}">        
-                <td>{{i+1}}</td>
-                <td>{{punt.email}}</td>
-                <td>{{punt.fecha}}</td>
-                <td>{{punt.tipoDeJuego}}</td>
-                <td>{{punt.puntaje}}</td>                         
-          </tr>
-        
-     
+  <div class="table-responsive">
+    <table class="table table-bordered" style="background-color: rgb(123, 218, 231);">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Juego</th>
+          <th scope="col">Puntaje</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+              <tr *ngFor="let punt of listadoPuntajesMostrar; index as i" [ngClass]="{'table-success': punt.siSoy === true,
+              'table-primary': punt.siSoy === false}">        
+                  <td>{{i+1}}</td>
+                  <td>{{punt.email}}</td>
+                  <td>{{punt.fecha}}</td>
+                  <td>{{punt.tipoDeJuego}}</td>
+                  <td>{{punt.puntaje}}</td>                         
+            </tr>
+          
       
-    </tbody>
-  </table>
-</div>
-  
+        
+      </tbody>
+    </table>
+  </div>
 </div>
 
   

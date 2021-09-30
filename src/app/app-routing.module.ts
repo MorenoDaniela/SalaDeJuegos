@@ -13,6 +13,7 @@ import { PokedexComponent } from './Componentes/pokedex/pokedex.component';
 import { ColorsComponent } from './Componentes/colors/colors.component';
 import { MenuDeJuegosComponent } from './Paginas/menu-de-juegos/menu-de-juegos.component';
 import { PuntajesComponent } from './Componentes/puntajes/puntajes.component';
+import { EncuestaComponent } from './Componentes/encuesta/encuesta.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:"preguntados",component:PokedexComponent,canActivate:[CanActivateGuard]},
   {path:"colors",component:ColorsComponent,canActivate:[CanActivateGuard]},
   {path:"juegos", component:MenuDeJuegosComponent,canActivate:[CanActivateGuard]},
-  {path:"puntajes", component:PuntajesComponent,canActivate:[CanActivateGuard]}
+  {path:"puntajes", component:PuntajesComponent,canActivate:[CanActivateGuard]},
+  {path:"encuesta", component:EncuestaComponent,canActivate:[CanActivateGuard]}
 ];
 
 @NgModule({

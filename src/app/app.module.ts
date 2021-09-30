@@ -11,7 +11,7 @@ import { BannerAeropuertoComponent } from './Componentes/banner-aeropuerto/banne
 import { AhorcadoComponent } from './Componentes/ahorcado/ahorcado.component';
 import {AngularFireModule} from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ChatComponent } from './Componentes/chat/chat.component';
@@ -54,7 +54,8 @@ import { EncuestaComponent } from './Componentes/encuesta/encuesta.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
-    HttpClientModule 
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [CanActivateGuard],
   bootstrap: [AppComponent]
