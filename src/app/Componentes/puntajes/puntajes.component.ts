@@ -14,10 +14,12 @@ import { ResultadosService } from 'src/app/Servicios/resultados.service';
 export class PuntajesComponent implements OnInit {
   Usuario: Usuario = new Usuario();
   listadoPuntajesMostrar: Array<Puntaje> = new Array<Puntaje>();
+  spinner:boolean=true;
 punt:any;
   constructor(public authService: IngresarService, public puntajesService: ResultadosService, public router:Router) { }
 
   ngOnInit(): void {
+    
     this.Usuario = this.authService.getItemLocal();
     if (this.Usuario ==null)
     {
@@ -26,6 +28,7 @@ punt:any;
       setTimeout(() => {
         this.cargarPuntajes();
       }, 1000);
+      this.spinner=false;
   }
 
   cargarPuntajes(): void {

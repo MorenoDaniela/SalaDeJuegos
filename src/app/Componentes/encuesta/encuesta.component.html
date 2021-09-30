@@ -29,9 +29,9 @@
                     <div class="col-3">
                         <label class="text-muted">Número de teléfono</label>
                         <input class="form-control" type="text" placeholder="Número de teléfono" formControlName="telefono">
-                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('estaMal') && formulario.get('telefono')?.touched">El teléfono debe tener solo numeros.</span>
-                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('required') && formulario.get('telefono')?.touched">El teléfono es requerido.</span>
-                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('maxLegth') ">El teléfono debe tener solo 10 caracteres.</span>
+                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('estaMal') && formulario.get('telefono')?.touched">El teléfono debe tener solo numeros. </span>
+                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('required') && formulario.get('telefono')?.touched">El teléfono es requerido. </span>
+                        <span class="text-danger" *ngIf="formulario.get('telefono')?.hasError('maximo')">El teléfono debe tener solo 10 caracteres.</span>
                     </div>
                     
                     

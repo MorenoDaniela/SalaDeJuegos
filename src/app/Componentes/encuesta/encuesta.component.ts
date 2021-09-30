@@ -18,7 +18,7 @@ export class EncuestaComponent implements OnInit {
       nombre:["", Validators.required],
       apellido:["", Validators.required],
       edad:["", [Validators.required, Validators.min(18), Validators.max(99)]],
-      telefono:["", [Validators.required,Validators.maxLength(10), this.validarTelefono]],
+      telefono:["", [Validators.required,this.validarLargo, this.validarTelefono]],
       gusto:["", Validators.required],
       juegos:["", Validators.required],
       opinion:["", Validators.required],
@@ -37,7 +37,7 @@ export class EncuestaComponent implements OnInit {
 
   aceptar()
  {
-   console.log(this.formulario);
+  //  console.log(this.formulario);
    const nombre = this.formulario.controls['nombre'].value;
    const apellido = this.formulario.controls['apellido'].value;
    const edad = this.formulario.controls['edad'].value;
@@ -45,7 +45,7 @@ export class EncuestaComponent implements OnInit {
    const juegos = this.formulario.controls['juegos'].value;
    const gusto = this.formulario.controls['gusto'].value;
    const opinion = this.formulario.controls['opinion'].value;
-   console.log("nombre "+nombre+" apellido "+apellido+" edad "+edad+" telefono "+telefono+ " juegos " +juegos+ " gusto "+gusto+ " opinion "+opinion);
+  //  console.log("nombre "+nombre+" apellido "+apellido+" edad "+edad+" telefono "+telefono+ " juegos " +juegos+ " gusto "+gusto+ " opinion "+opinion);
    this.encuestaService.enviarRespuestas(this.Usuario.id,this.Usuario.email, nombre, apellido, edad, telefono, juegos, gusto, opinion);
    this.authService.showSuccessWithTimeout("Envio exitoso","Tus respuestas fueron enviadas con exito.",2000);
  } 
@@ -62,6 +62,15 @@ export class EncuestaComponent implements OnInit {
    return null;
  }
 
-
+validarLargo(control:AbstractControl)
+{
+  const telefono = control.value;
+  const maximoPermitido = telefono.length;
+  if (maximoPermitido>10)
+  {
+    return {maximo:true}
+  }
+  return null;
+}
 
 }
